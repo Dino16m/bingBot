@@ -1,0 +1,3 @@
+<?php
+#in the beginning
+?>
