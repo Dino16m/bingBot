@@ -28,7 +28,6 @@ function init()
 		}
 		$error = ['API_KEY is not set please set it in the plugins panel under BingbotAdmin'];
 		$init_error = array_merge($init_error, $error);
-		echo "null confirmed";
 	}
 	$home = get_home_url();
 	define('HOME_URI', $home);
@@ -70,6 +69,9 @@ function add_admin_view()
 add_action('publish_post','on_publish', 10, 2);
 function on_publish($id, $post)
 {
+	if (wp_is_post_revision($id)){
+		return;
+	}
 	$post_uri = get_permalink($id);
 	submit_site_uri($post_uri, 'auto');
 }
